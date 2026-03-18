@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"profile-enchantment/app/internal/auth/dto"
 	"profile-enchantment/app/pkg"
 
 	"github.com/gofiber/fiber/v2"
@@ -8,9 +9,17 @@ import (
 
 func (h *userHandler) GetUserDetailHandler(c *fiber.Ctx) error {
 	loggedInUserId := ""
-	userId := c.Params("id")
 
-	users, err := h.userUsecase.GetUserDetailUsecase(loggedInUserId, userId)
+	var req dto.GetUserDetailRequest
+	err := c.ParamsParser(&req)
+	if err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(pkg.FailedResponse{
+			Success: false,
+			Message: "Invalid request",
+		})
+	}
+
+	users, err := h.userUsecase.GetUserDetailUsecase(loggedInUserId, req.ID)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(pkg.FailedResponse{
 			Success: false,
