@@ -1,8 +1,8 @@
 package route
 
 import (
-	"profile-enchantment/app/internal/auth/domain"
-	"profile-enchantment/app/internal/auth/handler"
+	"profile-enchantment/app/internal/domain"
+	"profile-enchantment/app/internal/handler"
 
 	"github.com/gofiber/fiber/v2"
 )

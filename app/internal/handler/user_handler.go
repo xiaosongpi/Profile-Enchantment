@@ -1,6 +1,6 @@
 package handler
 
-import "profile-enchantment/app/internal/auth/domain"
+import "profile-enchantment/app/internal/domain"
 
 type userHandler struct {
 	userUsecase domain.UserUsecase

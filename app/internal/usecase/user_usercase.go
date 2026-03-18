@@ -1,6 +1,6 @@
 package usecase
 
-import "profile-enchantment/app/internal/auth/domain"
+import "profile-enchantment/app/internal/domain"
 
 type userUsecase struct {
 	userRepository domain.UserRepository
