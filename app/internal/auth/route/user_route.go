@@ -13,4 +13,5 @@ func UserRoute(app *fiber.App, userUsecase domain.UserUsecase) {
 	userRoute := app.Group("/users")
 
 	userRoute.Get("/", userHandler.GetUserListHandler)
+	userRoute.Get("/:id", userHandler.GetUserDetailHandler)
 }

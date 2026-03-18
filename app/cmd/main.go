@@ -6,7 +6,7 @@ import (
 	"profile-enchantment/app/config"
 	"profile-enchantment/app/internal/auth/repository"
 	"profile-enchantment/app/internal/auth/route"
-	usecase "profile-enchantment/app/internal/auth/usercase"
+	"profile-enchantment/app/internal/auth/usecase"
 
 	"github.com/gofiber/fiber/v2"
 )

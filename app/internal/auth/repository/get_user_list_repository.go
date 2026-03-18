@@ -3,17 +3,7 @@ package repository
 import (
 	"profile-enchantment/app/internal/auth/domain"
 	"profile-enchantment/app/internal/auth/dto"
-
-	"gorm.io/gorm"
 )
-
-type userRepository struct {
-	db *gorm.DB
-}
-
-func NewUserRepository(db *gorm.DB) *userRepository {
-	return &userRepository{db: db}
-}
 
 func (r *userRepository) GetUserListRepository(loggedInUserId string) ([]dto.GetUserListResponse, error) {
 	var users []domain.User

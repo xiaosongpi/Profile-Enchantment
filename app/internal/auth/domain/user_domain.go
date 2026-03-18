@@ -21,8 +21,10 @@ type User struct {
 
 type UserRepository interface {
 	GetUserListRepository(loggedInUserId string) ([]dto.GetUserListResponse, error)
+	GetUserDetailRepository(loggedInUserId string, userId string) (*dto.GetUserDetailResponse, error)
 }
 
 type UserUsecase interface {
 	GetUserListUsecase(loggedInUserId string) ([]dto.GetUserListResponse, error)
+	GetUserDetailUsecase(loggedInUserId string, userId string) (*dto.GetUserDetailResponse, error)
 }

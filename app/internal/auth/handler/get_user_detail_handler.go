@@ -6,10 +6,11 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func (h *userHandler) GetUserListHandler(c *fiber.Ctx) error {
+func (h *userHandler) GetUserDetailHandler(c *fiber.Ctx) error {
 	loggedInUserId := ""
+	userId := c.Params("id")
 
-	users, err := h.userUsecase.GetUserListUsecase(loggedInUserId)
+	users, err := h.userUsecase.GetUserDetailUsecase(loggedInUserId, userId)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(pkg.FailedResponse{
 			Success: false,
@@ -19,7 +20,7 @@ func (h *userHandler) GetUserListHandler(c *fiber.Ctx) error {
 
 	return c.Status(fiber.StatusOK).JSON(pkg.SuccessResponse{
 		Success: true,
-		Message: "Sucess to get user list",
+		Message: "Sucess to get user detail",
 		Data:    users,
 	})
 }

@@ -11,7 +11,7 @@ type GetUserListResponse struct {
 	FullName  string     `json:"fullName"`
 	Email     string     `json:"email"`
 	Role      string     `json:"role"`
-	IsActive  bool       `json:"isActived"`
+	IsActive  bool       `json:"isActive"`
 	CreatedAt time.Time  `json:"createdAt"`
 	UpdatedAt *time.Time `json:"updatedAt"`
 }
@@ -27,9 +27,9 @@ type GetUserDetailResponse struct {
 	FullName  string     `json:"fullName"`
 	Email     string     `json:"email"`
 	Role      string     `json:"role"`
-	IsActive  bool       `json:"isActived"`
+	IsActive  bool       `json:"isActive"`
 	IsDeleted bool       `json:"isDeleted"`
 	CreatedAt time.Time  `json:"createdAt"`
-	UpdatedAt time.Time  `json:"updatedAt"`
+	UpdatedAt *time.Time `json:"updatedAt"`
 	DeletedAt *time.Time `json:"deletedAt"`
 }
