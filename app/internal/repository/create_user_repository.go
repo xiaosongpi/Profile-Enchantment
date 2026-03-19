@@ -15,11 +15,12 @@ func (r *userRepository) CreateUser(reqBody domain.CreateUserInput) (*domain.Use
 		IsActive:  true,
 	}
 
-	err := r.db.
+	result := r.db.
 		Table("users").
-		Create(&models).Error
-	if err != nil {
-		return nil, err
+		Create(&models)
+
+	if result.Error != nil || result.RowsAffected == 0 {
+		return nil, result.Error
 	}
 
 	user := &domain.User{
@@ -35,5 +36,5 @@ func (r *userRepository) CreateUser(reqBody domain.CreateUserInput) (*domain.Use
 		DeletedAt: models.DeletedAt,
 	}
 
-	return user, err
+	return user, nil
 }

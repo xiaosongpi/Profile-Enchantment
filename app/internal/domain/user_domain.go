@@ -34,14 +34,17 @@ type CreateUserInput struct {
 
 // Repository
 type UserRepository interface {
-	GetUserList(loggedInUserId string) ([]User, error)
-	GetUserDetail(loggedInUserId string, userId string) (*User, error)
+	GetUserList(loggedInUserId int) ([]User, error)
+	GetUserDetail(loggedInUserId int, userId int) (*User, error)
+	GetUserByEmail(email string) *User
 	CreateUser(reqBody CreateUserInput) (*User, error)
+	DeleteUser(loggedInUserId int, userIds []int) error
 }
 
 // Usecase
 type UserUsecase interface {
-	GetUserList(loggedInUserId string) ([]User, error)
-	GetUserDetail(loggedInUserId string, userId string) (*User, error)
+	GetUserList(loggedInUserId int) ([]User, error)
+	GetUserDetail(loggedInUserId int, userId int) (*User, error)
 	CreateUser(reqBody CreateUserInput) (*User, error)
+	DeleteUser(loggedInUserId int, userIds []int) error
 }

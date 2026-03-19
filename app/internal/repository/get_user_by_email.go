@@ -5,19 +5,18 @@ import (
 	"profile-enchantment/app/internal/model"
 )
 
-func (r *userRepository) GetUserDetail(loggedInUserId int, userId int) (*domain.User, error) {
+func (r *userRepository) GetUserByEmail(email string) *domain.User {
 	var model model.UserModel
 	result := r.db.
 		Table("users").
-		Where("id = ?", userId).
-		Where("deleted_at IS NULL").
+		Where("email = ?", email).
 		First(&model)
 
 	if result.Error != nil {
-		return nil, result.Error
+		return nil
 	}
 
-	user := domain.User{
+	user := &domain.User{
 		ID:        model.ID,
 		FirstName: model.FirstName,
 		LastName:  model.LastName,
@@ -30,5 +29,5 @@ func (r *userRepository) GetUserDetail(loggedInUserId int, userId int) (*domain.
 		DeletedAt: model.DeletedAt,
 	}
 
-	return &user, nil
+	return user
 }
