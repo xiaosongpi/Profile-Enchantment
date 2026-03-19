@@ -1,0 +1,39 @@
+package repository
+
+import (
+	"profile-enchantment/app/internal/domain"
+	"profile-enchantment/app/internal/model"
+)
+
+func (r *userRepository) CreateUser(reqBody domain.CreateUserInput) (*domain.User, error) {
+	models := model.UserModel{
+		FirstName: reqBody.FirstName,
+		LastName:  reqBody.LastName,
+		Email:     reqBody.Email,
+		Password:  reqBody.Password,
+		Role:      string(domain.RoleUser),
+		IsActive:  true,
+	}
+
+	err := r.db.
+		Table("users").
+		Create(&models).Error
+	if err != nil {
+		return nil, err
+	}
+
+	user := &domain.User{
+		ID:        models.ID,
+		FirstName: models.FirstName,
+		LastName:  models.LastName,
+		Email:     models.Email,
+		Password:  models.Password,
+		Role:      domain.Role(models.Role),
+		IsActive:  models.IsActive,
+		CreatedAt: models.CreatedAt,
+		UpdatedAt: models.UpdatedAt,
+		DeletedAt: models.DeletedAt,
+	}
+
+	return user, err
+}

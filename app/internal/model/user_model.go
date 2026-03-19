@@ -3,7 +3,7 @@ package model
 import "time"
 
 type UserModel struct {
-	ID        string `gorm:"primaryKey"`
+	ID        int `gorm:"primaryKey;autoIncrement;<-:false"`
 	FirstName string
 	LastName  string
 	Email     string

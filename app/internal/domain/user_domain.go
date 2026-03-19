@@ -12,7 +12,7 @@ const (
 
 // Original Table
 type User struct {
-	ID        string
+	ID        int
 	FirstName string
 	LastName  string
 	Email     string
@@ -24,14 +24,24 @@ type User struct {
 	DeletedAt *time.Time
 }
 
+// DTO
+type CreateUserInput struct {
+	FirstName string
+	LastName  string
+	Email     string
+	Password  string
+}
+
 // Repository
 type UserRepository interface {
-	GetUserList(loggedInUser string) ([]User, error)
-	GetUserDetail(loggedInUser string, userId string) (*User, error)
+	GetUserList(loggedInUserId string) ([]User, error)
+	GetUserDetail(loggedInUserId string, userId string) (*User, error)
+	CreateUser(reqBody CreateUserInput) (*User, error)
 }
 
 // Usecase
 type UserUsecase interface {
-	GetUserList(loggedInUser string) ([]User, error)
-	GetUserDetail(loggedInUser string, userId string) (*User, error)
+	GetUserList(loggedInUserId string) ([]User, error)
+	GetUserDetail(loggedInUserId string, userId string) (*User, error)
+	CreateUser(reqBody CreateUserInput) (*User, error)
 }
