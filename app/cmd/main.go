@@ -4,9 +4,9 @@ import (
 	"log"
 	"os"
 	"profile-enchantment/app/config"
-	"profile-enchantment/app/internal/auth/repository"
-	"profile-enchantment/app/internal/auth/route"
-	usecase "profile-enchantment/app/internal/auth/usercase"
+	"profile-enchantment/app/internal/repository"
+	"profile-enchantment/app/internal/route"
+	"profile-enchantment/app/internal/usecase"
 
 	"github.com/gofiber/fiber/v2"
 )
