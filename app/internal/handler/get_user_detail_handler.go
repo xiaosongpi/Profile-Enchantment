@@ -3,14 +3,16 @@ package handler
 import (
 	"profile-enchantment/app/internal/handler/dto"
 	"profile-enchantment/app/pkg"
+	"strconv"
 
 	"github.com/gofiber/fiber/v2"
 )
 
-func (h *userHandler) GetUserDetailHandler(c *fiber.Ctx) error {
-	loggedInUserId := ""
-	userId := c.Params("id")
-	if userId == "" {
+func (h *userHandler) GetUserDetail(c *fiber.Ctx) error {
+	loggedInUserId := 1
+
+	userId, err := strconv.Atoi(c.Params("id"))
+	if err == nil {
 		return c.Status(fiber.StatusBadRequest).JSON(pkg.FailedResponse{
 			Success: false,
 			Message: "invalid input",

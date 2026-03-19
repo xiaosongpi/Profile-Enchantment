@@ -5,15 +5,15 @@ import (
 	"profile-enchantment/app/internal/model"
 )
 
-func (r *userRepository) GetUserList(loggedInUserId string) ([]domain.User, error) {
+func (r *userRepository) GetUserList(loggedInUserId int) ([]domain.User, error) {
 	var models []model.UserModel
-	err := r.db.
+	result := r.db.
 		Table("users").
 		Where("deleted_at IS NULL").
-		Find(&models).Error
+		Find(&models)
 
-	if err != nil {
-		return nil, err
+	if result.Error != nil {
+		return nil, result.Error
 	}
 
 	users := make([]domain.User, len(models))
