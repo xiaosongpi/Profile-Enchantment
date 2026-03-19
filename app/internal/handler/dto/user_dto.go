@@ -32,3 +32,7 @@ type CreateUserResponse struct {
 	CreatedAt time.Time `json:"createdAt"`
 	UpdatedAt time.Time `json:"updatedAt"`
 }
+
+type DeleteUserRequest struct {
+	ID []int `json:"id"`
+}

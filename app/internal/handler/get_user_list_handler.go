@@ -7,8 +7,8 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func (h *userHandler) GetUserListHandler(c *fiber.Ctx) error {
-	loggedInUserId := ""
+func (h *userHandler) GetUserList(c *fiber.Ctx) error {
+	loggedInUserId := 1
 
 	users, err := h.userUsecase.GetUserList(loggedInUserId)
 	if err != nil {
