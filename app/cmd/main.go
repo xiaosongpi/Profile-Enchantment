@@ -4,9 +4,9 @@ import (
 	"log"
 	"os"
 	"profile-enchantment/app/config"
-	"profile-enchantment/app/internal/repository"
+	user_repository "profile-enchantment/app/internal/repository/user"
 	"profile-enchantment/app/internal/route"
-	"profile-enchantment/app/internal/usecase"
+	user_usecase "profile-enchantment/app/internal/usecase/user"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -26,8 +26,8 @@ func main() {
 
 	log.Println("Success to connect database")
 
-	userRepository := repository.NewUserRepository(db)
-	userUsecase := usecase.NewUserUsecase(userRepository)
+	userRepository := user_repository.NewUserRepository(db)
+	userUsecase := user_usecase.NewUserUsecase(userRepository)
 
 	app := fiber.New()
 	port := os.Getenv("PORT")
