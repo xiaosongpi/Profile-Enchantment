@@ -5,7 +5,7 @@ import (
 	"profile-enchantment/app/internal/model"
 )
 
-func (r *userRepository) GetUserDetail(loggedInUserId int, userId int) (*domain.User, error) {
+func (r *userRepository) FindByID(userId int) (*domain.User, error) {
 	var model model.UserModel
 	result := r.db.
 		Table("users").
