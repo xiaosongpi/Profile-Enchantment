@@ -12,7 +12,7 @@ func (h *userHandler) GetUserDetail(c *fiber.Ctx) error {
 	loggedInUserId := 1
 
 	userId, err := strconv.Atoi(c.Params("id"))
-	if err == nil {
+	if err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(pkg.FailedResponse{
 			Success: false,
 			Message: "invalid input",
