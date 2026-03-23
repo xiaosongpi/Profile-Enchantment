@@ -22,6 +22,12 @@ type User struct {
 	DeletedAt *time.Time
 }
 
+type UserStats struct {
+	TotalUser          int64
+	TotalLoggeedInUser int64
+	TotalActiveUser    int64
+}
+
 type CreateUserInput struct {
 	FirstName string
 	LastName  string
@@ -29,8 +35,20 @@ type CreateUserInput struct {
 	Password  string
 }
 
+type LoginInput struct {
+	Email    string
+	Password string
+}
+
+type LoginResult struct {
+	Token     string
+	ExpiredAt time.Time
+	User      *User
+}
+
 type UserRepository interface {
 	FindAll() ([]User, error)
+	FindStats() (*UserStats, error)
 	FindByID(userId int) (*User, error)
 	FindByEmail(email string) *User
 	Create(user *User) (*User, error)
@@ -38,8 +56,9 @@ type UserRepository interface {
 }
 
 type UserUsecase interface {
-	GetUserList(loggedInUserId int) ([]User, error)
+	GetUserList(loggedInUserId int) ([]User, *UserStats, error)
 	GetUserDetail(loggedInUserId, userId int) (*User, error)
 	CreateUser(reqBody *CreateUserInput) (*User, error)
 	DeleteUser(loggedInUserId int, userIds []int) error
+	Login(reqBody *LoginInput) (*LoginResult, error)
 }

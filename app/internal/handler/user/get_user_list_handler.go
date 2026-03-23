@@ -10,7 +10,7 @@ import (
 func (h *userHandler) GetUserList(c *fiber.Ctx) error {
 	loggedInUserId := 1
 
-	users, err := h.userUsecase.GetUserList(loggedInUserId)
+	users, userStats, err := h.userUsecase.GetUserList(loggedInUserId)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(pkg.FailedResponse{
 			Success: false,
@@ -18,9 +18,9 @@ func (h *userHandler) GetUserList(c *fiber.Ctx) error {
 		})
 	}
 
-	response := make([]dto.GetUserListResponse, len(users))
+	response := make([]dto.GetUserListResponseData, len(users))
 	for i, user := range users {
-		response[i] = dto.GetUserListResponse{
+		response[i] = dto.GetUserListResponseData{
 			ID:        user.ID,
 			FullName:  user.FirstName + " " + user.LastName,
 			Email:     user.Email,
@@ -33,6 +33,11 @@ func (h *userHandler) GetUserList(c *fiber.Ctx) error {
 	return c.Status(fiber.StatusOK).JSON(pkg.SuccessResponse{
 		Success: true,
 		Message: "success to get user detail",
-		Data:    response,
+		Data: dto.GetUserListResponse{
+			TotalUser:          int(userStats.TotalUser),
+			TotalLoggeedInUser: int(userStats.TotalLoggeedInUser),
+			TotalActiveUser:    int(userStats.TotalActiveUser),
+			Data:               response,
+		},
 	})
 }
