@@ -1,17 +1,40 @@
-import uploadImg from "../assets/upload.png"
-import home from "../assets/house-regular-full.svg"
+import { Home, Users, User, Wallet } from "lucide-react"
+import SidebarButton from "./SidebarButton"
+import SidebarCircleButton from "./SidebarCircleButton"
 
 function Sidebar() {
     return(
-        <div className="w-64 h-full bg-sidebar-primary rounded-4xl border border-sidebar-fourth/20">
-            <div className="flex items-center gap-4 py-8 px-5">
-                <img src={uploadImg} alt="logo" className="w-8 h-8" />
-                <p className="text-sidebar-trinary font-medium">My Project</p>
+        <div className="min-w-64 h-full border border-transparent border-r-sidebar-fourth/20 bg-linear-to-t from-sidebar-dark from-70% via-[#222325] via-85% to-sidebar-trinary/20 flex flex-col justify-between">
+            <div>
+                
             </div>
-            <div className="flex flex-col gap-y-1 p-3">
-                <button className="w-full h-10 bg-sidebar-trinary rounded-xl cursor-pointer text-left px-3.5 flex items-center gap-2.5">
-                    <img src={home} alt="home" className="w-5 h-5" />
-                    <p className="text-sm font-medium">Home</p>
+            <div className="p-5 w-full gap-y-2.5 flex flex-col">
+                <SidebarButton>
+                  <Home className="w-5 h-5" />
+                  <span className="text-sm">Home</span>
+                </SidebarButton>
+                <SidebarButton>
+                  <Users className="w-5 h-5" />
+                  <span className="text-sm">User</span>
+                </SidebarButton>
+                <SidebarButton>
+                  <Wallet className="w-5 h-5" />
+                  <span className="text-sm">Wallet</span>
+                </SidebarButton>
+            </div>
+
+            <div className="w-full p-5 gap-2.5 border border-transparent border-t-sidebar-fourth/20 flex items-center justify-start">
+                <SidebarCircleButton>
+                    <User className="w-5 h-5" />
+                </SidebarCircleButton>
+                <div className="flex flex-col text-sidebar-fourth/60">
+                    <span className="text-sm font-bold">Admin User</span>
+                    <span className="text-xs">adminuser@gmail.com</span>
+                </div>
+                <button className="w-5 h-5 gap-y-0.5 flex flex-col items-center justify-center cursor-pointer">
+                    <div className="w-1 h-1 rounded-full bg-sidebar-fourth/20" />
+                    <div className="w-1 h-1 rounded-full bg-sidebar-fourth/20" />
+                    <div className="w-1 h-1 rounded-full bg-sidebar-fourth/20" />
                 </button>
             </div>
         </div>

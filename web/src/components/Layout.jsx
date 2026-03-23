@@ -3,14 +3,14 @@ import { Outlet } from "react-router-dom"
 
 function Layout() {
     return (
-        <body className="bg-sidebar-primary">
-            <div className="p-4 h-screen flex gap-4 overflow-hidden">
+        <div className="bg-sidebar-dark">
+            <div className="h-screen flex gap-4">
                 <Sidebar />
-                <main className="w-screen rounded-4xl">
+                <main className="flex-1 overflow-hidden rounded-4xl">
                     <Outlet />
                 </main>
             </div>
-        </body>
+        </div>
     )
 }
 
