@@ -1,6 +1,9 @@
 package model
 
-import "time"
+import (
+	"profile-enchantment/app/internal/domain"
+	"time"
+)
 
 type UserModel struct {
 	ID        int `gorm:"primaryKey;autoIncrement;<-:false"`
@@ -8,7 +11,7 @@ type UserModel struct {
 	LastName  string
 	Email     string
 	Password  string
-	Role      string
+	Role      domain.Role
 	IsActive  bool
 	CreatedAt time.Time
 	UpdatedAt time.Time

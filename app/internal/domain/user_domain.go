@@ -2,7 +2,6 @@ package domain
 
 import "time"
 
-// Constant
 type Role string
 
 const (
@@ -10,7 +9,6 @@ const (
 	RoleUser  Role = "USER"
 )
 
-// Original Table
 type User struct {
 	ID        int
 	FirstName string
@@ -24,7 +22,6 @@ type User struct {
 	DeletedAt *time.Time
 }
 
-// DTO
 type CreateUserInput struct {
 	FirstName string
 	LastName  string
@@ -32,19 +29,17 @@ type CreateUserInput struct {
 	Password  string
 }
 
-// Repository
 type UserRepository interface {
-	GetUserList(loggedInUserId int) ([]User, error)
-	GetUserDetail(loggedInUserId int, userId int) (*User, error)
-	GetUserByEmail(email string) *User
-	CreateUser(reqBody CreateUserInput) (*User, error)
-	DeleteUser(loggedInUserId int, userIds []int) error
+	FindAll() ([]User, error)
+	FindByID(userId int) (*User, error)
+	FindByEmail(email string) *User
+	Create(user *User) (*User, error)
+	Delete(userIds []int) error
 }
 
-// Usecase
 type UserUsecase interface {
 	GetUserList(loggedInUserId int) ([]User, error)
-	GetUserDetail(loggedInUserId int, userId int) (*User, error)
-	CreateUser(reqBody CreateUserInput) (*User, error)
+	GetUserDetail(loggedInUserId, userId int) (*User, error)
+	CreateUser(reqBody *CreateUserInput) (*User, error)
 	DeleteUser(loggedInUserId int, userIds []int) error
 }

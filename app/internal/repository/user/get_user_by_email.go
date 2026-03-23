@@ -5,7 +5,7 @@ import (
 	"profile-enchantment/app/internal/model"
 )
 
-func (r *userRepository) GetUserByEmail(email string) *domain.User {
+func (r *userRepository) FindByEmail(email string) *domain.User {
 	var model model.UserModel
 	result := r.db.
 		Table("users").

@@ -4,7 +4,7 @@ import (
 	"profile-enchantment/app/internal/model"
 )
 
-func (r *userRepository) DeleteUser(loggedInUserId int, userIds []int) error {
+func (r *userRepository) Delete(userIds []int) error {
 	var models model.UserModel
 	result := r.db.
 		Table("users").

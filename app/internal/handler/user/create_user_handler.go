@@ -18,7 +18,7 @@ func (h *userHandler) CreateUser(c *fiber.Ctx) error {
 		})
 	}
 
-	user, err := h.userUsecase.CreateUser(reqBody)
+	user, err := h.userUsecase.CreateUser(&reqBody)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(pkg.FailedResponse{
 			Success: false,
