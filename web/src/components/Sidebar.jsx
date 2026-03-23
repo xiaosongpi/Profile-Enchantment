@@ -1,10 +1,10 @@
 import { Home, Users, User, Wallet } from "lucide-react"
 import SidebarButton from "./SidebarButton"
-import SidebarCircleButton from "./SidebarCircleButton"
+import CircleButton from "./CircleButton"
 
 function Sidebar() {
     return(
-        <div className="min-w-64 h-full border border-transparent border-r-sidebar-fourth/20 bg-linear-to-t from-sidebar-dark from-70% via-[#222325] via-85% to-sidebar-trinary/20 flex flex-col justify-between">
+        <div className="min-w-64 h-full border-r border-r-sidebar-fourth/20 bg-linear-to-t from-sidebar-dark from-70% via-[#222325] via-85% to-sidebar-trinary/20 flex flex-col justify-between">
             <div>
                 
             </div>
@@ -24,9 +24,9 @@ function Sidebar() {
             </div>
 
             <div className="w-full p-5 gap-2.5 border border-transparent border-t-sidebar-fourth/20 flex items-center justify-start">
-                <SidebarCircleButton>
+                <CircleButton>
                     <User className="w-5 h-5" />
-                </SidebarCircleButton>
+                </CircleButton>
                 <div className="flex flex-col text-sidebar-fourth/60">
                     <span className="text-sm font-bold">Admin User</span>
                     <span className="text-xs">adminuser@gmail.com</span>
