@@ -16,4 +16,5 @@ func UserRoute(app *fiber.App, userUsecase domain.UserUsecase) {
 	userRoute.Get("/:id", userHandler.GetUserDetail)
 	userRoute.Put("/", userHandler.DeleteUser)
 	userRoute.Post("/", userHandler.CreateUser)
+	userRoute.Post("/login", userHandler.Login)
 }

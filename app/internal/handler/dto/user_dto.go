@@ -1,6 +1,8 @@
 package dto
 
-import "time"
+import (
+	"time"
+)
 
 type GetUserListResponse struct {
 	TotalUser          int                       `json:"totalIser"`
@@ -40,6 +42,17 @@ type CreateUserResponse struct {
 	UpdatedAt time.Time `json:"updatedAt"`
 }
 
+type LoginResponse struct {
+	Token     string                 `json:"token"`
+	ExpiredAt time.Time              `json:"expiredAt"`
+	User      *GetUserDetailResponse `json:"user"`
+}
+
 type DeleteUserRequest struct {
 	ID []int `json:"id"`
+}
+
+type LoginRequest struct {
+	Email    string `json:"email"`
+	Password string `json:"password"`
 }

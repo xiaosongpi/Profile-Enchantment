@@ -23,9 +23,9 @@ type User struct {
 }
 
 type UserStats struct {
-	TotalUser          int
-	TotalLoggeedInUser int
-	TotalActiveUser    int
+	TotalUser          int64
+	TotalLoggeedInUser int64
+	TotalActiveUser    int64
 }
 
 type CreateUserInput struct {
@@ -33,6 +33,17 @@ type CreateUserInput struct {
 	LastName  string
 	Email     string
 	Password  string
+}
+
+type LoginInput struct {
+	Email    string
+	Password string
+}
+
+type LoginResult struct {
+	Token     string
+	ExpiredAt time.Time
+	User      *User
 }
 
 type UserRepository interface {
@@ -49,4 +60,5 @@ type UserUsecase interface {
 	GetUserDetail(loggedInUserId, userId int) (*User, error)
 	CreateUser(reqBody *CreateUserInput) (*User, error)
 	DeleteUser(loggedInUserId int, userIds []int) error
+	Login(reqBody *LoginInput) (*LoginResult, error)
 }
