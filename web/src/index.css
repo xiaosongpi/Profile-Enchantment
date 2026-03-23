@@ -1,8 +1,11 @@
 @import "tailwindcss";
 
 @theme {
-  --color-sidebar-primary: #161618;
-  --color-sidebar-secondary: #222428;
+  --color-sidebar-primary: #2a2c2b;
+  --color-sidebar-secondary: #343639;
+  
   --color-sidebar-trinary: #F1B96B;
   --color-sidebar-fourth: #E3D8C8;
+
+  --color-sidebar-dark: #1f2021
 }

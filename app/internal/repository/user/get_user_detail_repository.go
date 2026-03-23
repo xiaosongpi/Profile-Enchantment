@@ -5,18 +5,19 @@ import (
 	"profile-enchantment/app/internal/model"
 )
 
-func (r *userRepository) GetUserByEmail(email string) *domain.User {
+func (r *userRepository) FindByID(userId int) (*domain.User, error) {
 	var model model.UserModel
 	result := r.db.
 		Table("users").
-		Where("email = ?", email).
+		Where("id = ?", userId).
+		Where("deleted_at IS NULL").
 		First(&model)
 
 	if result.Error != nil {
-		return nil
+		return nil, result.Error
 	}
 
-	user := &domain.User{
+	user := domain.User{
 		ID:        model.ID,
 		FirstName: model.FirstName,
 		LastName:  model.LastName,
@@ -29,5 +30,5 @@ func (r *userRepository) GetUserByEmail(email string) *domain.User {
 		DeletedAt: model.DeletedAt,
 	}
 
-	return user
+	return &user, nil
 }
