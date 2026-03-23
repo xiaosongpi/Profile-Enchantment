@@ -3,6 +3,13 @@ package dto
 import "time"
 
 type GetUserListResponse struct {
+	TotalUser          int                       `json:"totalIser"`
+	TotalLoggeedInUser int                       `json:"totalLoggedInUser"`
+	TotalActiveUser    int                       `json:"totalActiveUser"`
+	Data               []GetUserListResponseData `json:"data"`
+}
+
+type GetUserListResponseData struct {
 	ID        int       `json:"id"`
 	FullName  string    `json:"fullName"`
 	Email     string    `json:"email"`

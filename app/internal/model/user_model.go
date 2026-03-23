@@ -17,3 +17,9 @@ type UserModel struct {
 	UpdatedAt time.Time
 	DeletedAt *time.Time `gorm:"index"`
 }
+
+type UserModelStats struct {
+	TotalUser          int64 `json:"totalIser"`
+	TotalLoggeedInUser int64 `json:"totalLoggedInUser"`
+	TotalActiveUser    int64 `json:"totalActiveUser"`
+}
